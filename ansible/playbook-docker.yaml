@@ -1,0 +1,102 @@
+---
+- name: Configure the server to host a wordpress website
+  hosts: all
+  become: true
+  remote_user: ubuntu
+
+  vars:
+    domain_name: 'khafiz.me'
+
+  tasks:
+    - name: Update os
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: true
+
+    - name: Install necessary package
+      ansible.builtin.apt:
+        name:
+          - curl
+          - wget
+          - software-properties-common
+          - python3-pip
+          - python3-virtualenv
+          - ubuntu-keyring
+        state: present
+
+    - name: Create a directory if it does not exist for docker gpg key
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+
+    - name: Download docker gpg key
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        dest: /etc/apt/keyrings/docker.asc
+        mode: '0644'
+
+    - name: Add the repository to Apt sources
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        state: present
+        update_cache: true
+      become: true
+
+    - name: Install Docker CE
+      ansible.builtin.apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: present
+
+    - name: Ensure Docker CE is running enable on boot
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Copy docker-compose.yaml
+      ansible.builtin.copy:
+        src: /home/kapis/Documents/Devop/fyp/docker/compose.yaml
+        dest: /home/ubuntu/docker-compose/
+        mode: '0755'
+
+    - name: Create Python virtual env and install package inside the virtual env
+      ansible.builtin.pip:
+        name:
+          - docker
+        virtualenv: /home/ubuntu/docker-compose/ # <--- path to user's home folder*
+        virtualenv_command: virtualenv
+        virtualenv_site_packages: false
+        virtualenv_python: python3.12.3
+
+    - name: Create and start services
+      community.docker.docker_compose_v2:
+        project_src: /home/ubuntu/docker-compose/
+        files:
+          - compose.yaml
+        state: present
+      register: output
+
+    - name: Show results
+      ansible.builtin.debug:
+        var: output
+
+    - name: Copy khafiz.com.conf
+      ansible.builtin.copy:
+        src: /home/kapis/Documents/Devop/fyp/docker/khafiz.me.conf
+        dest: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-available/
+        mode: '0644'
+
+    - name: Enable the wordpress website
+      ansible.builtin.file:
+        src: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-available/khafiz.me.conf
+        dest: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-enabled/khafiz.me.conf
+        state: link
+        owner: root
+        group: root
+        force: true
