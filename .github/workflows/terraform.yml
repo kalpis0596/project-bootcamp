@@ -47,9 +47,11 @@ name: 'Terraform'
 on:
   #push:
   workflow_dispatch:
+  push:
     branches: [main]
-    paths: ["terraform/**"]
+
   pull_request:
+    branches: [main]
 
 permissions:
   contents: read
@@ -58,12 +60,13 @@ jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: production
+    #environment: production
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
+        working-directory: ./terraform/
 
     steps:
     # Checkout the repository to the GitHub Actions runner
@@ -78,17 +81,14 @@ jobs:
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      working-directory: ./terraform
       run: terraform init
 
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
-      working-directory: ./terraform
       run: terraform fmt -check
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      working-directory: ./terraform
       run: terraform plan -input=false
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
