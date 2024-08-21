@@ -10,16 +10,13 @@ jobs:
     name: Ansible Lint # Naming the build is important to use it as a status check
     runs-on: ubuntu-latest
 
-    #defaults:
-      #run:
-        #working-directory: ./ansible
+    defaults:
+      run:
+        working-directory: ./ansible/
         
     steps:
       - uses: actions/checkout@v4
       - name: Run ansible-lint
-        #uses: ansible/ansible-lint@main # or version tag instead of 'main'
-        #with:
-          #targets: "."
-        run: |
-          cd ./ansible
-          ansible-lint .
+        uses: ansible/ansible-lint@main # or version tag instead of 'main'
+        with:
+          targets: ./ansible/*
