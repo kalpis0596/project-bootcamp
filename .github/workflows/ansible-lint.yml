@@ -9,6 +9,12 @@ jobs:
   build:
     name: Ansible Lint # Naming the build is important to use it as a status check
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./ansible/
+        
     steps:
       - uses: actions/checkout@v4
       - name: Run ansible-lint
