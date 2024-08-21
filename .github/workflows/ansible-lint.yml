@@ -1,10 +1,10 @@
 name: ansible-lint
 on:
   workflow_dispatch:
-  push:
+  #push:
     branches: ["main", "stable", "release/v*"]
-  pull_request:
-    branches: ["main", "stable", "release/v*"]
+  #pull_request:
+    #branches: ["main", "stable", "release/v*"]
 jobs:
   build:
     name: Ansible Lint # Naming the build is important to use it as a status check
