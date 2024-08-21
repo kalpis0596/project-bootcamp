@@ -47,8 +47,8 @@ name: 'Terraform'
 on:
   #push:
   workflow_dispatch:
-  push:
-    branches: [main]
+  #push:
+    #branches: [main]
 
   pull_request:
     branches: [main]
