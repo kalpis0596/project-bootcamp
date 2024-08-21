@@ -12,8 +12,7 @@ jobs:
 
     defaults:
       run:
-        shell: bash
-        working-directory: ./ansible/
+        working-directory: ./ansible
         
     steps:
       - uses: actions/checkout@v4
