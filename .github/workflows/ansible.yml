@@ -36,4 +36,9 @@ jobs:
         # Optional, SSH private key
         key: ${{secrets.SSH_PRIVATE_KEY}}
         # Optional, literal inventory file contents
-        inventory: host.ini
+        inventory: >
+          awshost 
+          ansible_user=ubuntu 
+          ansible_host=${{var.AWS_IP_ADDR}} 
+          ansible_ssh_private_key_file=${{secrets.SSH_PRIVATE_KEY}} 
+          ansible_python_interpreter=/usr/bin/python3
