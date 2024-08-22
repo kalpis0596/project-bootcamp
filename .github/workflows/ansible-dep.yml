@@ -36,4 +36,4 @@ jobs:
           ANSIBLE_USER: ${{ secrets.ANSIBLE_USER }}
           ANSIBLE_HOST_KEY_CHECKING: False
         run: |
-          ansible-playbook -i inventory/hosts.ini playbooks/deploy_web_server.yml --private-key private_key.pem -u ${{ secrets.ANSIBLE_USER }}
+          ansible-playbook -i ansible/hosts.ini ansible/playbook-docker.yaml --private-key private_key.pem -u ${{ secrets.ANSIBLE_USER }}
