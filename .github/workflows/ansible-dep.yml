@@ -2,8 +2,8 @@ name: Deploy with Ansible
 
 on:
   workflow_dispatch:
-    branches:
-      - main
+  push:
+    branches: ["main", "stable", "release/v*"]
     #types: [closed]
 
 jobs:
