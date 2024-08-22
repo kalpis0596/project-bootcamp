@@ -1,4 +1,4 @@
-name: 'Ansible'
+name: Deploy with Ansible
 
 on:
   #push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   ansible:
-    name: 'Ansible'
+    name: Deploy Ansible Playbook
     runs-on: ubuntu-latest
     #environment: production
 
@@ -38,5 +38,6 @@ jobs:
         # Optional, literal inventory file contents
         inventory: >
           awshost 
-          ansible_user=ubuntu 
+          ansible_user=ubuntu
+          ansible_host=${{vars.AWS_IP_ADDR}}
           ansible_python_interpreter=/usr/bin/python3
