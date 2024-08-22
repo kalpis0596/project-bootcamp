@@ -39,5 +39,5 @@ jobs:
         inventory: >
           awshost 
           ansible_user=ubuntu
-          ansible_host=${{vars.AWS_IP_ADDR}}
+          ansible_host=${{secrets.AWS_IP_ADDR}}
           ansible_python_interpreter=/usr/bin/python3
