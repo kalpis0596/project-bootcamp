@@ -19,9 +19,6 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v4
-    - name: Set up SSH
-      run: |
-        echo "${{secrets.SSH_PRIVATE_KEY}}" > 
     - name: Run playbook
       uses: dawidd6/action-ansible-playbook@v2
       with:
