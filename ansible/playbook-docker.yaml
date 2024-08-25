@@ -91,10 +91,16 @@
     - name: Show results
       ansible.builtin.debug:
         var: output
-
-    - name: Copy khafiz.com.conf
-      ansible.builtin.copy:
-        src: /home/kapis/Documents/Devop/fyp/docker/khafiz.me.conf
+        
+    - name: Create a directory if it does not exist for khafiz.com.conf
+      ansible.builtin.file:
+        path: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-available/
+        state: directory
+        mode: '0644'
+        
+    - name: Download khafiz.com.conf
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/kalpis0596/project-bootcamp/main/docker/khafiz.me.conf
         dest: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-available/
         mode: '0644'
 
