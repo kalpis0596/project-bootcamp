@@ -59,12 +59,12 @@
         state: started
         enabled: true
 
-    - name: Copy docker-compose.yaml
-      ansible.builtin.copy:
-        src: /home/kapis/Documents/Devop/fyp/docker/compose.yaml
+  - name: Download docker-compose.yaml
+      ansible.builtin.get_url:
+        url: https://raw.githubusercontent.com/kalpis0596/project-bootcamp/main/docker/compose.yaml
         dest: /home/ubuntu/docker-compose/
         mode: '0755'
-
+        
     - name: Create Python virtual env and install package inside the virtual env
       ansible.builtin.pip:
         name:
