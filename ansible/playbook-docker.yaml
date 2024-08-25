@@ -62,7 +62,7 @@
     - name: Download docker-compose.yaml
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/kalpis0596/project-bootcamp/main/docker/compose.yaml
-        dest: /home/redhat/docker-compose/
+        dest: /home/ubuntu/docker-compose/
         mode: '0755'
         
     - name: Create Python virtual env and install package inside the virtual env
