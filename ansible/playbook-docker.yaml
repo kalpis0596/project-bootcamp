@@ -58,7 +58,13 @@
         name: docker
         state: started
         enabled: true
-
+        
+    - name: Create a directory if it does not exist for docker-compose
+      ansible.builtin.file:
+        path: /home/ubuntu/docker-compose/
+        state: directory
+        mode: '0755'
+        
     - name: Download docker-compose.yaml
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/kalpis0596/project-bootcamp/main/docker/compose.yaml
