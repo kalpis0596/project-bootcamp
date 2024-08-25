@@ -59,7 +59,7 @@
         state: started
         enabled: true
 
-  - name: Download docker-compose.yaml
+    - name: Download docker-compose.yaml
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/kalpis0596/project-bootcamp/main/docker/compose.yaml
         dest: /home/ubuntu/docker-compose/
