@@ -111,5 +111,5 @@ jobs:
       run: |
         terraform output -raw wp-ip_public_addr
         echo "ip-addrs=$(terraform output -raw wp-ip_public_addr)" >> $GITHUB_ENV
-        echo "$(ip-addrs)"
+        echo $ip-addrs
 
