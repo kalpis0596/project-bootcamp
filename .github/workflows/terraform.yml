@@ -104,3 +104,11 @@ jobs:
     - name: Terraform Apply
       #if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
+
+      #Print public ip address
+    - name: Print public ip address
+      run: |
+        terraform output -raw wp-ip_public_addr
+        echo "ip-addrs=$(terraform output -raw wp-ip_public_addr)" >> $GITHUB_ENV
+        echo "$ip-addrs"
+
