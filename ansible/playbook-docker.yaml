@@ -58,19 +58,19 @@
         name: docker
         state: started
         enabled: true
-        
+
     - name: Create a directory if it does not exist for docker-compose
       ansible.builtin.file:
         path: /home/ubuntu/docker-compose/
         state: directory
         mode: '0755'
-        
+
     - name: Download docker-compose.yaml
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/kalpis0596/project-bootcamp/main/docker/compose.yaml
         dest: /home/ubuntu/docker-compose/
         mode: '0755'
-        
+
     - name: Create Python virtual env and install package inside the virtual env
       ansible.builtin.pip:
         name:
@@ -91,13 +91,13 @@
     - name: Show results
       ansible.builtin.debug:
         var: output
-        
+
     - name: Create a directory if it does not exist for khafiz.com.conf
       ansible.builtin.file:
         path: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-available/
         state: directory
         mode: '0644'
-        
+
     - name: Download khafiz.com.conf
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/kalpis0596/project-bootcamp/main/docker/khafiz.me.conf
