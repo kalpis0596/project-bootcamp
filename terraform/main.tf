@@ -122,5 +122,5 @@ resource "cloudflare_record" "wp-domain" {
   name    = "khafiz.me"
   content = aws_instance.wp-server.public_ip
   type    = "A"
-  ttl     = 3600
+  ttl     = 30
 }
