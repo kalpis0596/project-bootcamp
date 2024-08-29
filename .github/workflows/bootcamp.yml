@@ -1,4 +1,4 @@
-name: Run Terraform, cloudflare and Ansible
+name: terraform and ansible
 
 on:
   #push:
