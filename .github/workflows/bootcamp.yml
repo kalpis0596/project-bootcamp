@@ -102,5 +102,5 @@ jobs:
           ANSIBLE_USER: ubuntu
           ANSIBLE_HOST_KEY_CHECKING: False
         run: |
-          ansible-playbook -i inventory/hosts.ini playbooks/deploy_web_server.yml --private-key private_key.pem -u ubuntu -vvv
+          ansible-playbook -i inventory/host.ini playbooks/playbook-docker.yaml --private-key private_key.pem -u ubuntu -vvv
     
