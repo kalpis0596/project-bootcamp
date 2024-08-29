@@ -1,4 +1,4 @@
-name: Deploy with Ansible
+name: Ansible
 
 on:
   workflow_dispatch:
