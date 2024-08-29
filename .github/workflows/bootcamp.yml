@@ -1,4 +1,4 @@
-name: 'Terraform'
+name: 'Run Terraform, cloudflare and Ansible'
 
 on:
   #push:
