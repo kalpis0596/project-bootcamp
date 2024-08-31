@@ -123,7 +123,7 @@ data "cloudflare_zone" "wp-zone" {
 
 # Add a record to the domain
 resource "cloudflare_record" "wp-domain" {
-  zone_id = var.cloudflare_zone_id
+  zone_id = data.cloudflare_zone.wp-zone.id
   name    = "@"
   content = aws_instance.wp-server.public_ip
   type    = "A"
