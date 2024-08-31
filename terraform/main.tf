@@ -116,10 +116,15 @@ resource "aws_instance" "wp-server" {
   }
 }
 
+# Use data to look up zone info
+data "cloudflare_zone" "wp-zone" {
+  name = "khafiz.me"
+}
+
 # Add a record to the domain
 resource "cloudflare_record" "wp-domain" {
   zone_id = var.cloudflare_zone_id
-  name    = "khafiz.me"
+  name    = "@"
   content = aws_instance.wp-server.public_ip
   type    = "A"
   ttl     = 1
