@@ -13,7 +13,7 @@ output "cloudflare_zone" {
   description = "The name of the selected Cloudflare zone."
 }
 
-output "cloudflare_record_hostname" {
-  value = cloudflare_record.wp-record.hostname
-  description = "The hostname of the DNS record for the main server instance."
-}
+# output "cloudflare_record_hostname" {
+#   value = cloudflare_record.wp-record.hostname
+#   description = "The hostname of the DNS record for the main server instance."
+# }
