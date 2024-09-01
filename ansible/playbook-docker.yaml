@@ -4,8 +4,8 @@
   become: true
   remote_user: ubuntu
 
-  vars:
-    domain_name: 'khafiz.me'
+  # vars:
+  #   domain_name: 'khafiz.me'
 
   tasks:
     - name: Update os
@@ -92,23 +92,23 @@
       ansible.builtin.debug:
         var: output
 
-    - name: Create a directory if it does not exist for khafiz.com.conf
-      ansible.builtin.file:
-        path: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-available/
-        state: directory
-        mode: '0644'
+    # - name: Create a directory if it does not exist for khafiz.com.conf
+    #   ansible.builtin.file:
+    #     path: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-available/
+    #     state: directory
+    #     mode: '0644'
 
-    - name: Download khafiz.com.conf
-      ansible.builtin.get_url:
-        url: https://raw.githubusercontent.com/kalpis0596/project-bootcamp/main/docker/khafiz.me.conf
-        dest: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-available/
-        mode: '0644'
+    # - name: Download khafiz.com.conf
+    #   ansible.builtin.get_url:
+    #     url: https://raw.githubusercontent.com/kalpis0596/project-bootcamp/main/docker/khafiz.me.conf
+    #     dest: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-available/
+    #     mode: '0644'
 
-    - name: Enable the wordpress website
-      ansible.builtin.file:
-        src: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-available/khafiz.me.conf
-        dest: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-enabled/khafiz.me.conf
-        state: link
-        owner: root
-        group: root
-        force: true
+    # - name: Enable the wordpress website
+    #   ansible.builtin.file:
+    #     src: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-available/khafiz.me.conf
+    #     dest: /var/lib/docker/volumes/docker-compose_apache_conf/_data/sites-enabled/khafiz.me.conf
+    #     state: link
+    #     owner: root
+    #     group: root
+    #     force: true

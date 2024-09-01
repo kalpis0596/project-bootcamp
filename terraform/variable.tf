@@ -3,10 +3,10 @@ variable "project_name" {
   default = "wp"
 }
 
-# #Create cloudflare api token
+# Create cloudflare api token
 variable "CLOUDFLARE_API_TOKEN" {
   type    = string
-  default = "3QyK0X38lkILVFPGQ0tp_wc2qKU3M0rHvND6Ce4n"
+  default = "1EVwcEkygfv0ggAPWjyPW8iDSKBJvJMJSA1hzNG0"
 }
 
 # #Create cloudflare zone id
