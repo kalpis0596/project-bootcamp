@@ -14,6 +14,6 @@ output "cloudflare_zone" {
 }
 
 output "cloudflare_record_hostname" {
-  value = cloudflare_record.wp-domain.hostname
+  value = cloudflare_record.wp-record.hostname
   description = "The hostname of the DNS record for the main server instance."
 }
