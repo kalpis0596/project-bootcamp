@@ -19,8 +19,8 @@ services:
       - 33060
   wordpress:
     image: wordpress:latest
-    # volumes:
-    #   - apache_conf:/etc/apache2/
+    volumes:
+      - apache_conf:/etc/apache2/
     ports:
       - 80:80
     restart: always
@@ -31,7 +31,7 @@ services:
       - WORDPRESS_DB_NAME=wordpress
 volumes:
   db_data:
-  # apache_conf:
+  apache_conf:
 
   
     
