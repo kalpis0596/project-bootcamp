@@ -1,4 +1,4 @@
-name: terraform and ansible
+name: terraform_ansible
 
 on:
   #push:
