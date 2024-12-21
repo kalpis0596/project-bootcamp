@@ -20,5 +20,5 @@ provider "aws" {
 
 provider "cloudflare" {
   # Configuration options
-  api_token = var.CLOUDFLARE_API_TOKEN
+  #api_token = var.CLOUDFLARE_API_TOKEN
 }
