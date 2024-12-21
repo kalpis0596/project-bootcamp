@@ -58,7 +58,7 @@ jobs:
       with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          #command: pages deploy ./terraform/ --project-name=khafiz.me
+          command: pages deploy ./terraform/providers.tf --project-name=khafiz.me
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
